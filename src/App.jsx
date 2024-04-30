@@ -1,27 +1,20 @@
 import React, { useState } from 'react'
-import Header from './Header'
-import Footer from './Footer'
-import CreateNote from './CreateNote'
-import Note from './Note'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import AddNote from './components/AddNote';
+import Note from './components/Note';
 
 
 function App() {
 
     const [addData, setAddData] = useState([]);
-  
-    // const addNote = (note) => {
-    //     setAddData((prevData) => {
-    //       return [...prevData, note];
-    //     });
-
-    //     console.log(note);
-    // }
 
 
     return (
       <>
         <Header />
-        <CreateNote setAddData={setAddData} />
+
+        <AddNote setAddData={setAddData} />
 
         {addData.map((currVal, index) => {
           return <Note 

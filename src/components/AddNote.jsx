@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import add from '../assets/add.png';
 
 
-function CreateNote({setAddData}) {
+function AddNote({setAddData}) {
 
     const [note, setNote] = useState({
         title: '',
         content: ''
-    })
-
-    const [expand, setExpand] = useState(false)
+    });
+    const [expand, setExpand] = useState(false);
 
     const InputEvent = (e) => {
         const {name, value} = e.target;
@@ -18,12 +18,14 @@ function CreateNote({setAddData}) {
                 [name] : value
             }
         })
-        // console.log(note, "note");
     }
 
     const addEvent = (e) => {
         e.preventDefault()
-        setAddData( prev => [...prev, note])
+        // setAddData( prev => [...prev, note])
+        if(note.title !== "" || note.content !== "") {
+            setAddData( (prev) => [...prev, note]) 
+        }
         setNote({
             title: '',
             content: ''
@@ -41,8 +43,8 @@ function CreateNote({setAddData}) {
 
     return ( 
         <>
-            <div className='flex justify-center'>
-                <div className='mt-10 w-1/3 rounded-md bg-gray-800 border-2 border-gray-600'>
+            <div className='relative mx-auto w-1/3'>
+                <div className='mt-10 rounded-md bg-gray-800 border-2 border-gray-600'>
                     <form className='flex flex-col mt-4 mb-2 p-2 text-black'>
                         <input 
                             className='p-2 font-bold outline-none'
@@ -54,6 +56,7 @@ function CreateNote({setAddData}) {
                             autoComplete='off'
                             onClick={expandIt}
                             />
+
                         { expand ?
                         <textarea 
                             className='pl-2 outline-none'
@@ -64,11 +67,12 @@ function CreateNote({setAddData}) {
                             placeholder='Write a note...' 
                             /> : null }
                         <br/>
-                        <div className='flex flex-row justify-between'>
-                        {expand ?
+
+                        <div className='flex flex-row justify-between'>                         
+                        { expand ?
                         <button onClick={addEvent}>
-                            <img src='https://pnghq.com/wp-content/uploads/2023/02/plus-icon-white-png-1593.png' alt='add note' className='h-8 w-8 p-2 bg-yellow-400 rounded-full' />                            
-                        </button> : null }
+                            <img src={add} alt='add note' className='h-8 w-8 p-2 bg-yellow-400 rounded-full' />                            
+                        </button> : null }                        
                         {expand ?
                         <button className='text-white hover:bg-gray-700 p-2' onClick={collapseIt}>
                             Close
@@ -81,4 +85,4 @@ function CreateNote({setAddData}) {
      );
 }
 
-export default CreateNote;
+export default AddNote;
