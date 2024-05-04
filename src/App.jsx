@@ -14,7 +14,9 @@ function App() {
       <>
         <Header />
 
-        <AddNote setAddData={setAddData} />
+        <AddNote 
+          setAddData={setAddData}
+          addData={addData} />
 
         {addData.map((currVal, index) => {
           return <Note 

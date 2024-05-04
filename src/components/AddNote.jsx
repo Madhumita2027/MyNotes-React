@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import add from '../assets/add.png';
 
 
-function AddNote({setAddData}) {
+function AddNote({setAddData, addData}) {
 
     const [note, setNote] = useState({
         title: '',
@@ -10,6 +10,7 @@ function AddNote({setAddData}) {
     });
     const [expand, setExpand] = useState(false);
 
+    // add data
     const InputEvent = (e) => {
         const {name, value} = e.target;
         setNote((prevData) => {
@@ -39,6 +40,20 @@ function AddNote({setAddData}) {
     const collapseIt = () => {
         setExpand(false);
     }
+
+    // add and remove element to and from local storage
+    useEffect(() => {
+        const items = JSON.parse(localStorage.getItem('lists'))
+        console.log(items);
+        if(items && items.length > 0) {
+            setAddData(items)
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('lists', JSON.stringify(addData))
+    }, [addData])
+
 
 
     return ( 
