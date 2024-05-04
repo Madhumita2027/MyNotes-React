@@ -25,6 +25,7 @@ function App() {
           title={currVal.title} 
           content={currVal.content}
           setAddData={setAddData}
+          addData={addData}
           />
         })}
 

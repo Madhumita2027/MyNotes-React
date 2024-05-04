@@ -3,7 +3,7 @@ import edit from '../assets/edit.png';
 import dlt from '../assets/delete.png';
 
 
-function Note({title, content, id, setAddData}) {
+function Note({title, content, id, setAddData, addData}) {
 
     // delete item
     const deleteNote = () => {
@@ -16,7 +16,10 @@ function Note({title, content, id, setAddData}) {
 
     // edit note
     const editNote = (id) => {
-
+        let editItem = addData.find( (elem, index) => {
+            return index === id
+        })
+        console.log(editItem);
     }
 
 
@@ -27,7 +30,7 @@ function Note({title, content, id, setAddData}) {
                 <h1 className='p-1 font-bold'>{title}</h1>
                 <p className='px-2'>{content}</p>
                 <div className='flex justify-between p-2'>
-                    <button onClick={editNote}>
+                    <button onClick={() => editNote(id)}>
                         <img src={edit} alt='edit' className='h-6 w-6 hover:bg-gray-700 p-0.5' />
                     </button>
                     <button onClick={deleteNote}>

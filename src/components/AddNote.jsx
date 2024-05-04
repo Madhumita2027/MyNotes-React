@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import add from '../assets/add.png';
+import Note from './Note';
 
 
 function AddNote({setAddData, addData}) {
@@ -54,7 +55,7 @@ function AddNote({setAddData, addData}) {
         localStorage.setItem('lists', JSON.stringify(addData))
     }, [addData])
 
-
+    
 
     return ( 
         <>
